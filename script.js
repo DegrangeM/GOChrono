@@ -1,5 +1,6 @@
 let timer = 0;
 let pause = true;
+let timeout = null;
 
 function afficher() {
     document.querySelector('.overlay').style.height = timer / 1200 * 100 + '%';
@@ -23,7 +24,7 @@ function play() {
     if (!pause && timer < 20 * 60) {
         timer++;
         afficher();
-        setTimeout(play, 1000);
+        timeout = setTimeout(play, 1000);
     }
 }
 
@@ -32,6 +33,9 @@ document.body.addEventListener('click', function () {
         pause = false;
         play();
     } else {
+        if(timeout) {
+            clearTimeout(timeout);
+        }
         pause = true;
     }
 });
