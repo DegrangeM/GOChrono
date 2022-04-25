@@ -1,0 +1,67 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+    height: 100%;
+}
+
+#chrono,
+#chrono2 {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0px;
+}
+
+.etape1 {
+    background-color: #FE218B;
+    flex: 1;
+}
+
+
+.etape2 {
+    background-color: #FED700;
+    flex: 2;
+}
+
+
+.etape3 {
+    background-color: #21B0FE;
+    flex: 1;
+}
+
+.etape1,
+.etape2,
+.etape3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12.5vh;
+    color: white;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background-color: white;
+    opacity: 0.9;
+}
+
+#chrono3 {
+    max-height: 90%;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+#chrono2>div {
+    background: transparent;
+    filter: invert(1);
+}
