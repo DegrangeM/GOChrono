@@ -2,7 +2,7 @@
 
 ## Présentation
 
-GOChrono est un chronomètre pour le passage du Grand Oral.
+GOChrono est un chronomètre pour le passage du Grand Oral disponible sous la forme d'une page web.
 
 Il vous permet de voir en un coup d'oeil où vous en êtes parmi les [trois phases](https://www.education.gouv.fr/reussir-au-lycee/baccalaureat-comment-se-passe-le-grand-oral-100028) du grand oral.
 
