@@ -7,8 +7,7 @@ body {
     height: 100%;
 }
 
-#chrono,
-#chrono2 {
+#chrono {
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -50,18 +49,4 @@ body {
     height: 0%;
     background-color: white;
     opacity: 0.9;
-}
-
-#chrono3 {
-    max-height: 90%;
-    width: 100%;
-    overflow: hidden;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-}
-
-#chrono2>div {
-    background: transparent;
-    filter: invert(1);
 }
