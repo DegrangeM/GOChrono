@@ -4,9 +4,12 @@
 
 GOChrono est un chronomètre pour le passage du Grand Oral.
 
+Il vous permet de voir en un coup d'oeil où vous en êtes parmi les [trois phases](https://www.education.gouv.fr/reussir-au-lycee/baccalaureat-comment-se-passe-le-grand-oral-100028) du grand oral.
+
+![image](https://user-images.githubusercontent.com/53106394/165129622-2260f9eb-1972-4be3-97ae-37e2696dcea1.png)
+
 Son utilisation est particulièrement adapté aux mobiles.
 
-Il vous permet de voir en un coup d'oeil où vous en êtes parmi les [trois phases](https://www.education.gouv.fr/reussir-au-lycee/baccalaureat-comment-se-passe-le-grand-oral-100028) du grand oral.
 
 Pour l'utiliser, cliquez sur ce lien : https://degrangem.github.io/GOChrono/index.html
 
