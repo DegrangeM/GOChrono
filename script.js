@@ -4,12 +4,14 @@ let timeout = null;
 let speed = location.hash === '#demo' ? 100 : 1;
 
 function afficher() {
-    document.querySelector('.overlay').style.height = timer / 1200 * 100 + '%';
+    if (timer < 20 * 60) {
+        document.querySelector('.overlay').style.height = timer / 1200 * 100 + '%';
+    }
     if (timer <= 5 * 60) {
         document.querySelector('.etape1').textContent = temps(5 * 60 - timer);
     } else if (timer <= 15 * 60) {
         document.querySelector('.etape2').textContent = temps(15 * 60 - timer);
-    } else if (timer <= 20 * 60) {
+    } else {
         document.querySelector('.etape3').textContent = temps(20 * 60 - timer);
     }
     timer1 = 5 * 60 - timer;
@@ -18,11 +20,12 @@ function afficher() {
 }
 
 function temps(secondes) {
+    if (secondes < 0) { return '-' + temps(-secondes); }
     return parseInt(secondes / 60) + ':' + (secondes % 60).toString().padStart(2, '0')
 }
 
 function play() {
-    if (!pause && timer < 20 * 60) {
+    if (!pause) {
         timer++;
         afficher();
         timeout = setTimeout(play, 1000 / speed);
@@ -34,7 +37,7 @@ document.body.addEventListener('click', function () {
         pause = false;
         play();
     } else {
-        if(timeout) {
+        if (timeout) {
             clearTimeout(timeout);
         }
         pause = true;
