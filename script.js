@@ -1,6 +1,7 @@
 let timer = 0;
 let pause = true;
 let timeout = null;
+let speed = location.hash === '#demo' ? 100 : 1;
 
 function afficher() {
     document.querySelector('.overlay').style.height = timer / 1200 * 100 + '%';
@@ -24,7 +25,7 @@ function play() {
     if (!pause && timer < 20 * 60) {
         timer++;
         afficher();
-        timeout = setTimeout(play, 1000);
+        timeout = setTimeout(play, 1000 / speed);
     }
 }
 
