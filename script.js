@@ -1,4 +1,5 @@
-timer = 0;
+let timer = 0;
+let pause = true;
 
 function afficher() {
     document.querySelector('.overlay').style.height = timer/1200 * 100 + '%';
@@ -18,7 +19,19 @@ function temps(secondes) {
     return parseInt(secondes/60) + ':' + (secondes%60).toString().padStart(2,'0')
 }
 
-setInterval(function(){
-    timer++;
-    afficher();
-}, 10);
+function play() {
+    if(!pause && timer < 20*60) {
+        timer++;
+        afficher();
+        setTimeout(play, 1000);
+    }
+}
+
+document.body.addEventListener('click', function() {
+    if(pause) {
+        pause = false;
+        play();
+    } else {
+        pause = true;
+    }
+});
