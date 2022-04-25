@@ -15,7 +15,7 @@ Pour l'utiliser, cliquez sur ce lien : https://degrangem.github.io/GOChrono/inde
 
 Vous pouvez également scanner le QR Code ci-dessous.
 
-![image](https://user-images.githubusercontent.com/53106394/165128865-e35584df-277b-40c7-af3a-3f47b6798db2.png)
+![image](https://user-images.githubusercontent.com/53106394/165129941-4e6924ad-737a-43d5-94c4-cf977f277202.png)
 
 ## Fonctionnement
 
