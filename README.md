@@ -2,7 +2,7 @@
 
 # GOChrono
 
-# Présentation
+## Présentation
 
 <img src="https://user-images.githubusercontent.com/53106394/165129622-2260f9eb-1972-4be3-97ae-37e2696dcea1.png" align="right" />
 
