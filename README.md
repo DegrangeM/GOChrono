@@ -31,3 +31,9 @@ Pour le remettre à zéro, il vous suffit d'actualiser la page.
 ## Démonstration accélérée
 
 Pour voir l'utilisation du chronomètre en vitesse accélérée, utilisez ce lien : https://degrangem.github.io/GOChrono/index.html#demo
+
+## Version hors ligne
+
+Il est possible de télécharger GOChrono pour une utilisation sans internet : https://github.com/DegrangeM/GOChrono/archive/refs/heads/master.zip
+
+Une fois le fichier téléchargez, décompressez le et ouvrez le fichier `index.html`.
