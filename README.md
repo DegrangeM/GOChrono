@@ -1,5 +1,5 @@
 <a href="https://degrangem.github.io/GOChrono/index.html">![image](https://user-images.githubusercontent.com/53106394/165280540-e1b2524b-aaa3-4665-a6c1-cd61dcf78558.png)</a>
-<a href="https://github.com/DegrangeM/GOChrono/archive/refs/heads/master.zip">![image](https://user-images.githubusercontent.com/53106394/165280995-a576505d-00ef-4a11-a2df-cc175d6d5d4a.png)</a>
+<a href="https://github.com/DegrangeM/GOChrono/archive/refs/heads/master.zip">![image](https://user-images.githubusercontent.com/53106394/165281179-5b47855b-af2a-4e73-b7e8-3d7dccf13b19.png)</a>
 
 # GOChrono
 
