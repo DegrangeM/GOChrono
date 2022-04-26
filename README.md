@@ -34,6 +34,6 @@ Pour voir l'utilisation du chronomètre en vitesse accélérée, utilisez ce lie
 
 ## Version hors ligne
 
-Il est possible de télécharger GOChrono pour une utilisation sans internet : https://github.com/DegrangeM/GOChrono/archive/refs/heads/master.zip
+Il est possible de télécharger GOChrono pour une utilisation sans internet en cliquant [ici](https://github.com/DegrangeM/GOChrono/archive/refs/heads/master.zip).
 
 Une fois le fichier téléchargez, décompressez le et ouvrez le fichier `index.html`.
