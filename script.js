@@ -8,6 +8,8 @@ let noSleep = new NoSleep(); // empêche l'écran du téléphone de s'éteindre 
 function afficher() {
     if (timer < 20 * 60 * 1000) {
         document.querySelector('.overlay').style.height = (timer / 1000) / (20 * 60) * 100 + '%';
+    } else {
+        document.querySelector('.overlay').style.height = '100%';
     }
     if (timer <= 5 * 60 * 1000) {
         document.querySelector('.etape1').textContent = temps(5 * 60 - parseInt(timer / 1000));
