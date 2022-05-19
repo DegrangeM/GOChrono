@@ -11,15 +11,15 @@ function afficher() {
         document.querySelector('.overlay').style.height = (timer / 1000) / (20 * 60) * 100 + '%';
     } else {
         document.querySelector('.overlay').style.height = '100%';
-        etape === 3 && (vibrer([350, 350, 350, 350, 350]), etape = 4);
+        etape <= 3 && (vibrer([350, 350, 350, 350, 350]), etape = 4, document.querySelector('.etape3').textContent = temps(0));
     }
     if (timer <= 5 * 60 * 1000) {
         document.querySelector('.etape1').textContent = temps(5 * 60 - parseInt(timer / 1000));
     } else if (timer <= 15 * 60 * 1000) {
-        etape === 1 && (vibrer(500), etape = 2);
+        etape <= 1 && (vibrer(500), etape = 2, document.querySelector('.etape1').textContent = temps(0));
         document.querySelector('.etape2').textContent = temps(15 * 60 - parseInt(timer / 1000));
     } else {
-        etape === 2 && (vibrer(500), etape = 3);
+        etape <= 2 && (vibrer(500), etape = 3, document.querySelector('.etape2').textContent = temps(0));
         document.querySelector('.etape3').textContent = temps(20 * 60 - parseInt(timer / 1000));
     }
 }
