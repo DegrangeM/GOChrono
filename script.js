@@ -3,6 +3,7 @@ let pause = true;
 let last = false;
 let timeout = null;
 let speed = location.hash === '#demo' ? 100 : 1;
+let noSleep = new NoSleep(); // empêche l'écran du téléphone de s'éteindre automatiquement
 
 function afficher() {
     if (timer < 20 * 60 * 1000) {
@@ -42,9 +43,11 @@ function vibrer(t) {
 document.body.addEventListener('click', function () {
     vibrer(10);
     if (pause) {
+        noSleep.enable();
         pause = false;
         tick();
     } else {
+        noSleep.disable();
         tick();
         if (timeout) {
             clearTimeout(timeout);
