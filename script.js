@@ -33,7 +33,14 @@ function tick() {
     }
 }
 
+function vibrer(t) {
+    if (navigator.vibrate) {
+        navigator.vibrate(t);
+    }
+}
+
 document.body.addEventListener('click', function () {
+    vibrer(100);
     if (pause) {
         pause = false;
         tick();
