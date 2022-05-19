@@ -40,7 +40,7 @@ function vibrer(t) {
 }
 
 document.body.addEventListener('click', function () {
-    vibrer(100);
+    vibrer(10);
     if (pause) {
         pause = false;
         tick();
