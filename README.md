@@ -28,6 +28,8 @@ Pour le mettre en pause, il faut suffit de cliquer à nouveau sur l'écran.
 
 Pour le remettre à zéro, il vous suffit d'actualiser la page.
 
+Pour accéder directement à une étape (par exemple car le candidat n'a plus rien à dire), il vous suffit de maintenir longtemps le doigt appuyé sur l'étape en question.
+
 ## Démonstration accélérée
 
 Pour voir l'utilisation du chronomètre en vitesse accélérée, utilisez ce lien : https://degrangem.github.io/GOChrono/index.html#demo
