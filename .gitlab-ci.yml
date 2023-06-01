@@ -4,7 +4,7 @@
 # This specific template is located at:
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Pages/HTML.gitlab-ci.yml
 
-# Full project: https://gitlab.com/pages/plain-html
+# Full project: https://gitlab.com/pages/plain-html 
 pages:
   stage: deploy
   environment: production
