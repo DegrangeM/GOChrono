@@ -1,5 +1,8 @@
-<a href="https://degrangem.github.io/GOChrono/index.html">![image](https://user-images.githubusercontent.com/53106394/165280540-e1b2524b-aaa3-4665-a6c1-cd61dcf78558.png)</a>
-<a href="https://github.com/DegrangeM/GOChrono/archive/refs/heads/master.zip">![image](https://user-images.githubusercontent.com/53106394/165281468-78365b2c-bd0e-4811-b766-c01de9020454.png)</a>
+<a href="https://degrangem.github.io/GOChrono/index.html">![image](https://badgen.net/badge/GoChrono/Version%20en%20ligne/?icon=github)</a>
+<a href="https://github.com/DegrangeM/GOChrono/archive/refs/heads/master.zip">![image](https://badgen.net/badge/GoChrono/Version%20hors%20ligne%20(.zip)/cyan?icon=github)</a>
+<a href="https://degrangem.forge.aeif.fr/GOChrono/">![image](https://badgen.net/badge/GoChrono/Version%20en%20ligne%20sur%20la%20forge/?icon=gitlab)</a>
+<a href="https://forge.aeif.fr/DegrangeM/GOChrono/-/archive/master/GOChrono-master.zip">![image](https://badgen.net/badge/GoChrono/Version%20hors%20ligne%20sur%20la%20forge%20(.zip)/cyan?icon=gitlab)</a>
+
 
 # GOChrono
 
