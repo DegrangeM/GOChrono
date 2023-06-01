@@ -1,8 +1,15 @@
-<a href="https://degrangem.github.io/GOChrono/index.html">![image](https://badgen.net/badge/GoChrono/Version%20en%20ligne/?icon=github)</a>
-<a href="https://github.com/DegrangeM/GOChrono/archive/refs/heads/master.zip">![image](https://badgen.net/badge/GoChrono/Version%20hors%20ligne%20(.zip)/cyan?icon=github)</a>
-
-<a href="https://degrangem.forge.aeif.fr/GOChrono/">![image](https://badgen.net/badge/GoChrono/Version%20en%20ligne%20sur%20la%20forge/?icon=gitlab)</a>
-<a href="https://forge.aeif.fr/DegrangeM/GOChrono/-/archive/master/GOChrono-master.zip">![image](https://badgen.net/badge/GoChrono/Version%20hors%20ligne%20sur%20la%20forge%20(.zip)/cyan?icon=gitlab)</a>
+<a href="https://degrangem.github.io/GOChrono/index.html">
+  <img src="https://badgen.net/badge/GoChrono/Version%20en%20ligne/?icon=github" alt="Version en ligne"/>
+</a>
+<a href="https://github.com/DegrangeM/GOChrono/archive/refs/heads/master.zip">
+  <img src="https://badgen.net/badge/GoChrono/Version%20hors%20ligne%20(.zip)/cyan?icon=github" alt="Version hors ligne (.zip)" />
+</a>
+<br />
+<a href="https://degrangem.forge.aeif.fr/GOChrono/">
+  <img src="https://badgen.net/badge/GoChrono/Version%20en%20ligne%20sur%20la%20forge/?icon=gitlab" alt="Version en ligne sur la forge" /></a>
+<a href="https://forge.aeif.fr/DegrangeM/GOChrono/-/archive/master/GOChrono-master.zip">
+  <img src="https://badgen.net/badge/GoChrono/Version%20hors%20ligne%20sur%20la%20forge%20(.zip)/cyan?icon=gitlab" alt="Version hors ligne sur la forge (.zip)" />
+</a>
 
 
 # GOChrono
