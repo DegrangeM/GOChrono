@@ -6,8 +6,48 @@ let speed = location.hash === '#demo' ? 100 : 1;
 let noSleep = new NoSleep(); // empêche l'écran du téléphone de s'éteindre automatiquement
 let etape = 1;
 let skip = false;
+let pip = location.hash === '#pip';
+let video;
+let canvas;
+let ctx;
+let stream;
+if (pip) {
+    video = document.createElement('video');
+    //video.setAttribute('autoplay', '');
+    canvas = document.createElement('canvas');
+    ctx = canvas.getContext('2d');
+    ctx.font = "50px Arial";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height); // Il faut dessiner quelque chose avant captureStream
+    stream = canvas.captureStream();
+    video.srcObject = stream;
+    let anim = false;
+    document.body.addEventListener('mousedown', function (e) {
+        if (e.button === 1) { // Detect middle click
+           /* !anim && clearInterval(anim);
+            anim = setInterval(function () {
+                ctx.fillStyle = "white";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "black";
+                ctx.fillText(new Date().toTimeString().split(' ')[0], canvas.width / 2, canvas.height / 2);
+            }, 1000);*/
+            video.play();
+            video.requestPictureInPicture();
+        }
+    }, false);
+
+}
+
 
 function afficher() {
+    // Code fouilli à refaire ...
+    if (pip) {
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // ctx.fillStyle = "black";
+    }
     if (timer < 20 * 60 * 1000) {
         document.querySelector('.overlay').style.height = (timer / 1000) / (20 * 60) * 100 + '%';
     } else {
@@ -16,12 +56,32 @@ function afficher() {
     }
     if (timer <= 5 * 60 * 1000) {
         document.querySelector('.etape1').textContent = temps(5 * 60 - parseInt(timer / 1000));
+        if(pip) {
+            ctx.fillStyle = "#FE218B";
+            ctx.fillRect(0, canvas.height * (timer / (5 * 60 * 1000)), canvas.width, canvas.height);
+            ctx.fillStyle = "black";
+            ctx.fillText(temps(5 * 60 - parseInt(timer / 1000)), canvas.width / 2, canvas.height / 2);
+        }
     } else if (timer <= 15 * 60 * 1000) {
         etape <= 1 && (vibrer(500), etape = 2, document.querySelector('.etape1').textContent = temps(0));
         document.querySelector('.etape2').textContent = temps(15 * 60 - parseInt(timer / 1000));
+        if(pip) {
+            ctx.fillStyle = "#FED700";
+            ctx.fillRect(0, canvas.height * (timer / (10 * 60 * 1000) - 5/10), canvas.width, canvas.height);
+            ctx.fillStyle = "black";
+            ctx.fillText(temps(15 * 60 - parseInt(timer / 1000)), canvas.width / 2, canvas.height / 2);
+        }
     } else {
         etape <= 2 && (vibrer(500), etape = 3, document.querySelector('.etape2').textContent = temps(0));
         document.querySelector('.etape3').textContent = temps(20 * 60 - parseInt(timer / 1000));
+        if(pip) {
+            ctx.fillStyle = "#21B0FE";
+            let percent = (timer / (5 * 60 * 1000) - 15/5);
+            percent = percent < 0 ? 0 : percent;
+            ctx.fillRect(0, canvas.height * percent, canvas.width, canvas.height);
+            ctx.fillStyle = "black";
+            ctx.fillText(temps(20 * 60 - parseInt(timer / 1000)), canvas.width / 2, canvas.height / 2);
+        }
     }
 }
 
@@ -73,7 +133,7 @@ document.body.addEventListener('click', function () {
         document.querySelector('.' + etape[0]).addEventListener(e[0], function () {
             let mouseDownTimer = setTimeout(x => {
                 vibrer(10);
-                timer = etape[1]*60*1000;
+                timer = etape[1] * 60 * 1000;
                 skip = true;
                 afficher();
             }, 1000);
