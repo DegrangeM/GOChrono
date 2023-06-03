@@ -2,7 +2,7 @@ let timer = 0;
 let pause = true;
 let last = false;
 let timeout = null;
-let speed = location.hash === '#demo' ? 100 : 111;
+let speed = location.hash === '#demo' ? 100 : 1;
 let noSleep = new NoSleep(); // empêche l'écran du téléphone de s'éteindre automatiquement
 let etape = 1;
 let skip = false;
