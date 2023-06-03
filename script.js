@@ -6,6 +6,40 @@ let speed = location.hash === '#demo' ? 100 : 1;
 let noSleep = new NoSleep(); // empêche l'écran du téléphone de s'éteindre automatiquement
 let etape = 1;
 let skip = false;
+let pip = location.hash === '#pip';
+let video;
+let canvas;
+let ctx;
+let stream;
+if (pip) {
+    video = document.createElement('video');
+    //video.setAttribute('autoplay', '');
+    canvas = document.createElement('canvas');
+    ctx = canvas.getContext('2d');
+    ctx.font = "50px Arial";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height); // Il faut dessiner quelque chose avant captureStream
+    stream = canvas.captureStream();
+    video.srcObject = stream;
+    let anim = false;
+    document.body.addEventListener('mousedown', function (e) {
+        if (e.button === 1) { // Detect middle click
+            !anim && clearInterval(anim);
+            anim = setInterval(function () {
+                ctx.fillStyle = "white";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "black";
+                ctx.fillText(new Date().toTimeString().split(' ')[0], canvas.width / 2, canvas.height / 2);
+            }, 1000);
+            video.play();
+            video.requestPictureInPicture();
+        }
+    }, false);
+
+}
+
 
 function afficher() {
     if (timer < 20 * 60 * 1000) {
@@ -73,7 +107,7 @@ document.body.addEventListener('click', function () {
         document.querySelector('.' + etape[0]).addEventListener(e[0], function () {
             let mouseDownTimer = setTimeout(x => {
                 vibrer(10);
-                timer = etape[1]*60*1000;
+                timer = etape[1] * 60 * 1000;
                 skip = true;
                 afficher();
             }, 1000);
