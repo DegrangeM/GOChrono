@@ -1,3 +1,7 @@
+const SECOND = 60000; // milliseconds
+
+const AUXIALIARY_MOUSE_BUTTON = 1;
+
 let timer = 0;
 let pause = true;
 let last = false;
@@ -11,6 +15,10 @@ let video;
 let canvas;
 let ctx;
 let stream;
+
+let overlay = document.querySelector('#overlay');
+let steps = document.querySelectorAll('.step');
+
 if (pip) {
     video = document.createElement('video');
     //video.setAttribute('autoplay', '');
@@ -25,21 +33,76 @@ if (pip) {
     video.srcObject = stream;
     let anim = false;
     document.body.addEventListener('mousedown', function (e) {
-        if (e.button === 1) { // Detect middle click
-           /* !anim && clearInterval(anim);
-            anim = setInterval(function () {
-                ctx.fillStyle = "white";
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = "black";
-                ctx.fillText(new Date().toTimeString().split(' ')[0], canvas.width / 2, canvas.height / 2);
-            }, 1000);*/
+        if (e.button === AUXIALIARY_MOUSE_BUTTON) { // Detect middle click
+            /* !anim && clearInterval(anim);
+             anim = setInterval(function () {
+                 ctx.fillStyle = "white";
+                 ctx.fillRect(0, 0, canvas.width, canvas.height);
+                 ctx.fillStyle = "black";
+                 ctx.fillText(new Date().toTimeString().split(' ')[0], canvas.width / 2, canvas.height / 2);
+             }, 1000);*/
             video.play();
             video.requestPictureInPicture();
         }
     }, false);
-
 }
 
+// Point d'entrée
+setupListeners();
+
+function setupListeners() {
+
+    /**
+     * Gestion de la pause:
+     *  - si le timer tourne: met en pause le timer.
+     *  - si le timer est en pause: relance le timer.
+     */
+    document.body.addEventListener('click', () => {
+        if (skip) {
+            skip = false;
+            return;
+        }
+        vibrer(10);
+        if (pause) {
+            noSleep.enable();
+            pause = false;
+            tick();
+        } else {
+            noSleep.disable();
+            tick();
+            if (timeout) {
+                clearTimeout(timeout);
+            }
+            last = false;
+            pause = true;
+        }
+    });
+
+    // Gestion du passage au prochain timer (appui long sur l'étape).
+    zip(steps, [0, 5, 15]).forEach(([step, stepStartingTime]) => {
+        [
+            ['mousedown', 'mouseup', 'mousemove'],
+            ['touchstart', 'touchend', 'touchmove']
+        ].forEach(([downEvent, upEvent, moveEvent]) => {
+            step.addEventListener(downEvent, () => {
+                const mouseDownTimer = setTimeout(x => {
+                    vibrer(10);
+                    timer = stepStartingTime * SECOND;
+                    skip = true;
+                    afficher();
+                }, 1000);
+
+                this.addEventListener(upEvent, function () {
+                    clearTimeout(mouseDownTimer);
+                });
+
+                this.addEventListener(moveEvent, function () {
+                    clearTimeout(mouseDownTimer);
+                });
+            });
+        });
+    });
+}
 
 function afficher() {
     // Code fouilli à refaire ...
@@ -48,46 +111,48 @@ function afficher() {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         // ctx.fillStyle = "black";
     }
-    if (timer < 20 * 60 * 1000) {
-        document.querySelector('.overlay').style.height = (timer / 1000) / (20 * 60) * 100 + '%';
+    if (timer < 20 * SECOND) {
+        overlay.style.height = (timer / 1000) / (20 * 60) * 100 + '%';
     } else {
-        document.querySelector('.overlay').style.height = '100%';
-        etape <= 3 && (vibrer([350, 350, 350, 350, 350]), etape = 4, document.querySelector('.etape3').textContent = temps(0));
+        overlay.style.height = '100%';
+        etape <= 3 && (vibrer([350, 350, 350, 350, 350]), etape = 4, steps[2].textContent = formatTemps(0));
     }
-    if (timer <= 5 * 60 * 1000) {
-        document.querySelector('.etape1').textContent = temps(5 * 60 - parseInt(timer / 1000));
-        if(pip) {
+    if (timer <= 5 * SECOND) {
+        steps[0].textContent = formatTemps(5 * 60 - parseInt(timer / 1000));
+        if (pip) {
             ctx.fillStyle = "#FE218B";
-            ctx.fillRect(0, canvas.height * (timer / (5 * 60 * 1000)), canvas.width, canvas.height);
+            ctx.fillRect(0, canvas.height * (timer / (5 * SECOND)), canvas.width, canvas.height);
             ctx.fillStyle = "black";
-            ctx.fillText(temps(5 * 60 - parseInt(timer / 1000)), canvas.width / 2, canvas.height / 2);
+            ctx.fillText(formatTemps(5 * 60 - parseInt(timer / 1000)), canvas.width / 2, canvas.height / 2);
         }
-    } else if (timer <= 15 * 60 * 1000) {
-        etape <= 1 && (vibrer(500), etape = 2, document.querySelector('.etape1').textContent = temps(0));
-        document.querySelector('.etape2').textContent = temps(15 * 60 - parseInt(timer / 1000));
-        if(pip) {
+    } else if (timer <= 15 * SECOND) {
+        etape <= 1 && (vibrer(500), etape = 2, steps[0].textContent = formatTemps(0));
+        steps[1].textContent = formatTemps(15 * 60 - parseInt(timer / 1000));
+        if (pip) {
             ctx.fillStyle = "#FED700";
-            ctx.fillRect(0, canvas.height * (timer / (10 * 60 * 1000) - 5/10), canvas.width, canvas.height);
+            ctx.fillRect(0, canvas.height * (timer / (10 * SECOND) - 5 / 10), canvas.width, canvas.height);
             ctx.fillStyle = "black";
-            ctx.fillText(temps(15 * 60 - parseInt(timer / 1000)), canvas.width / 2, canvas.height / 2);
+            ctx.fillText(formatTemps(15 * 60 - parseInt(timer / 1000)), canvas.width / 2, canvas.height / 2);
         }
     } else {
-        etape <= 2 && (vibrer(500), etape = 3, document.querySelector('.etape2').textContent = temps(0));
-        document.querySelector('.etape3').textContent = temps(20 * 60 - parseInt(timer / 1000));
-        if(pip) {
+        etape <= 2 && (vibrer(500), etape = 3, steps[1].textContent = formatTemps(0));
+        steps[2].textContent = formatTemps(20 * 60 - parseInt(timer / 1000));
+        if (pip) {
             ctx.fillStyle = "#21B0FE";
-            let percent = (timer / (5 * 60 * 1000) - 15/5);
+            let percent = (timer / (5 * SECOND) - 15 / 5);
             percent = percent < 0 ? 0 : percent;
             ctx.fillRect(0, canvas.height * percent, canvas.width, canvas.height);
             ctx.fillStyle = "black";
-            ctx.fillText(temps(20 * 60 - parseInt(timer / 1000)), canvas.width / 2, canvas.height / 2);
+            ctx.fillText(formatTemps(20 * 60 - parseInt(timer / 1000)), canvas.width / 2, canvas.height / 2);
         }
     }
 }
 
-function temps(secondes) {
-    if (secondes < 0) { return '-' + temps(-secondes); }
-    return parseInt(secondes / 60) + ':' + (secondes % 60).toString().padStart(2, '0')
+function formatTemps(secondes) {
+    if (secondes < 0) {
+        return '-' + formatTemps(-secondes);
+    }
+    return parseInt(secondes / 60) + ':' + (secondes % 60).toString().padStart(2, '0');
 }
 
 function tick() {
@@ -107,43 +172,6 @@ function vibrer(t) {
     }
 }
 
-document.body.addEventListener('click', function () {
-    if (skip) {
-        skip = false;
-        return;
-    }
-    vibrer(10);
-    if (pause) {
-        noSleep.enable();
-        pause = false;
-        tick();
-    } else {
-        noSleep.disable();
-        tick();
-        if (timeout) {
-            clearTimeout(timeout);
-        }
-        last = false;
-        pause = true;
-    }
-});
-
-[['etape1', 0], ['etape2', 5], ['etape3', 15]].forEach(function (etape) {
-    [['mousedown', 'mouseup', 'mousemove'], ['touchstart', 'touchend', 'touchmove']].forEach(function (e) {
-        document.querySelector('.' + etape[0]).addEventListener(e[0], function () {
-            let mouseDownTimer = setTimeout(x => {
-                vibrer(10);
-                timer = etape[1] * 60 * 1000;
-                skip = true;
-                afficher();
-            }, 1000);
-            this.addEventListener(e[1], function () {
-                clearTimeout(mouseDownTimer);
-            });
-
-            this.addEventListener(e[2], function () {
-                clearTimeout(mouseDownTimer);
-            });
-        });
-    });
-});
+function zip(a, b) {
+    a.map((k, i) => [k, b[i]]);
+}
