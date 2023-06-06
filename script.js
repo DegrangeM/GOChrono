@@ -1,4 +1,4 @@
-const SECOND = 60000; // milliseconds
+const MINUTE = 60000; // milliseconds
 
 const AUXIALIARY_MOUSE_BUTTON = 1;
 
@@ -87,7 +87,7 @@ function setupListeners() {
             step.addEventListener(downEvent, () => {
                 const mouseDownTimer = setTimeout(x => {
                     vibrer(10);
-                    timer = stepStartingTime * SECOND;
+                    timer = stepStartingTime * MINUTE;
                     skip = true;
                     afficher();
                 }, 1000);
@@ -111,26 +111,26 @@ function afficher() {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         // ctx.fillStyle = "black";
     }
-    if (timer < 20 * SECOND) {
+    if (timer < 20 * MINUTE) {
         overlay.style.height = (timer / 1000) / (20 * 60) * 100 + '%';
     } else {
         overlay.style.height = '100%';
         etape <= 3 && (vibrer([350, 350, 350, 350, 350]), etape = 4, steps[2].textContent = formatTemps(0));
     }
-    if (timer <= 5 * SECOND) {
+    if (timer <= 5 * MINUTE) {
         steps[0].textContent = formatTemps(5 * 60 - parseInt(timer / 1000));
         if (pip) {
             ctx.fillStyle = "#FE218B";
-            ctx.fillRect(0, canvas.height * (timer / (5 * SECOND)), canvas.width, canvas.height);
+            ctx.fillRect(0, canvas.height * (timer / (5 * MINUTE)), canvas.width, canvas.height);
             ctx.fillStyle = "black";
             ctx.fillText(formatTemps(5 * 60 - parseInt(timer / 1000)), canvas.width / 2, canvas.height / 2);
         }
-    } else if (timer <= 15 * SECOND) {
+    } else if (timer <= 15 * MINUTE) {
         etape <= 1 && (vibrer(500), etape = 2, steps[0].textContent = formatTemps(0));
         steps[1].textContent = formatTemps(15 * 60 - parseInt(timer / 1000));
         if (pip) {
             ctx.fillStyle = "#FED700";
-            ctx.fillRect(0, canvas.height * (timer / (10 * SECOND) - 5 / 10), canvas.width, canvas.height);
+            ctx.fillRect(0, canvas.height * (timer / (10 * MINUTE) - 5 / 10), canvas.width, canvas.height);
             ctx.fillStyle = "black";
             ctx.fillText(formatTemps(15 * 60 - parseInt(timer / 1000)), canvas.width / 2, canvas.height / 2);
         }
@@ -139,7 +139,7 @@ function afficher() {
         steps[2].textContent = formatTemps(20 * 60 - parseInt(timer / 1000));
         if (pip) {
             ctx.fillStyle = "#21B0FE";
-            let percent = (timer / (5 * SECOND) - 15 / 5);
+            let percent = (timer / (5 * MINUTE) - 15 / 5);
             percent = percent < 0 ? 0 : percent;
             ctx.fillRect(0, canvas.height * percent, canvas.width, canvas.height);
             ctx.fillStyle = "black";
