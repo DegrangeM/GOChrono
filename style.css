@@ -16,26 +16,24 @@ body {
     margin: 0px;
 }
 
-.etape1 {
+.step:nth-child(1) {
     background-color: #FE218B;
     flex: 1;
 }
 
 
-.etape2 {
+.step:nth-child(2) {
     background-color: #FED700;
     flex: 2;
 }
 
 
-.etape3 {
+.step:nth-child(3) {
     background-color: #21B0FE;
     flex: 1;
 }
 
-.etape1,
-.etape2,
-.etape3 {
+.step {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,13 +41,13 @@ body {
     color: white;
 }
 
-.overlay {
+#overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 0%;
     background-color: white;
-    opacity: 0.9;
+    opacity: 0.6;
     pointer-events: none;
 }
