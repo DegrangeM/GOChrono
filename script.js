@@ -17,7 +17,7 @@ let ctx;
 let stream;
 
 let overlay = document.querySelector('#overlay');
-let steps = document.querySelectorAll('.step');
+let steps = Array.from(document.querySelectorAll('.step'));
 
 if (pip) {
     video = document.createElement('video');
@@ -173,5 +173,5 @@ function vibrer(t) {
 }
 
 function zip(a, b) {
-    a.map((k, i) => [k, b[i]]);
+    return a.map((k, i) => [k, b[i]]);
 }
