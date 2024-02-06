@@ -79,7 +79,7 @@ function setupListeners() {
     });
 
     // Gestion du passage au prochain timer (appui long sur l'étape).
-    zip(steps, [0, 5, 15]).forEach(([step, stepStartingTime]) => {
+    zip(steps, [0, 10/*, 15*/]).forEach(([step, stepStartingTime]) => {
         [
             ['mousedown', 'mouseup', 'mousemove'],
             ['touchstart', 'touchend', 'touchmove']
@@ -115,26 +115,26 @@ function afficher() {
         overlay.style.height = (timer / 1000) / (20 * 60) * 100 + '%';
     } else {
         overlay.style.height = '100%';
-        etape <= 3 && (vibrer([350, 350, 350, 350, 350]), etape = 4, steps[2].textContent = formatTemps(0));
+        etape <= 3 && (vibrer([350, 350, 350, 350, 350]), etape = 4, steps[/*2*/1].textContent = formatTemps(0));
     }
-    if (timer <= 5 * MINUTE) {
-        steps[0].textContent = formatTemps(5 * 60 - parseInt(timer / 1000));
+    if (timer <= 10 * MINUTE) {
+        steps[0].textContent = formatTemps(10 * 60 - parseInt(timer / 1000));
         if (pip) {
             ctx.fillStyle = "#FE218B";
-            ctx.fillRect(0, canvas.height * (timer / (5 * MINUTE)), canvas.width, canvas.height);
+            ctx.fillRect(0, canvas.height * (timer / (10 * MINUTE)), canvas.width, canvas.height);
             ctx.fillStyle = "black";
-            ctx.fillText(formatTemps(5 * 60 - parseInt(timer / 1000)), canvas.width / 2, canvas.height / 2);
+            ctx.fillText(formatTemps(10 * 60 - parseInt(timer / 1000)), canvas.width / 2, canvas.height / 2);
         }
-    } else if (timer <= 15 * MINUTE) {
+    } else if (timer <= 20 * MINUTE) {
         etape <= 1 && (vibrer(500), etape = 2, steps[0].textContent = formatTemps(0));
-        steps[1].textContent = formatTemps(15 * 60 - parseInt(timer / 1000));
+        steps[1].textContent = formatTemps(20 * 60 - parseInt(timer / 1000));
         if (pip) {
             ctx.fillStyle = "#FED700";
-            ctx.fillRect(0, canvas.height * (timer / (10 * MINUTE) - 5 / 10), canvas.width, canvas.height);
+            ctx.fillRect(0, canvas.height * (timer / (20 * MINUTE) - 10 / 10), canvas.width, canvas.height);
             ctx.fillStyle = "black";
-            ctx.fillText(formatTemps(15 * 60 - parseInt(timer / 1000)), canvas.width / 2, canvas.height / 2);
+            ctx.fillText(formatTemps(20 * 60 - parseInt(timer / 1000)), canvas.width / 2, canvas.height / 2);
         }
-    } else {
+    } /* else {
         etape <= 2 && (vibrer(500), etape = 3, steps[1].textContent = formatTemps(0));
         steps[2].textContent = formatTemps(20 * 60 - parseInt(timer / 1000));
         if (pip) {
@@ -145,7 +145,7 @@ function afficher() {
             ctx.fillStyle = "black";
             ctx.fillText(formatTemps(20 * 60 - parseInt(timer / 1000)), canvas.width / 2, canvas.height / 2);
         }
-    }
+    } */
 }
 
 function formatTemps(secondes) {

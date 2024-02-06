@@ -17,21 +17,21 @@ body {
 }
 
 .step:nth-child(1) {
-    background-color: #FE218B;
-    flex: 1;
-}
-
-
-.step:nth-child(2) {
-    background-color: #FED700;
+    background-color: #FED700; /* FE218B */
     flex: 2;
 }
 
 
+.step:nth-child(2) {
+    background-color: #21B0FE; /* FED700 */
+    flex: 2;
+}
+
+/*
 .step:nth-child(3) {
     background-color: #21B0FE;
     flex: 1;
-}
+}*/
 
 .step {
     display: flex;
